@@ -1,10 +1,12 @@
 # steps to configure and use the flows defined under mistral_recover_flows
-1）（copy files）
+1 copy files
+
 $ cd /path/to/mistral/mistral/actions/openstack/
 $ cp -r /path/to/senlin/examples/workflow/cluster_migration ./
 
 
-2) (modify mistral/setup.cfg)
+2 modify mistral/setup.cfg
+
 $ vim /path/to/mistral/setup.cfg:
 
 [entry_points]
@@ -20,12 +22,14 @@ mistral.actions =
     custom.validate_flavor = mistral.actions.openstack.cluster_migration.cold_migration.validate_flavor_action:ValidateFlavorAction
 
 
-3) (populate db)
+3 populate db
+
 $ cd /path/to/mistral
 $ sudo pip install -e .
 $ mistral-db-manage —-config-file /path/to/mistral.conf populate
 
 
-4) (create workflow)
+4 create workflow
+
 $cd /path/to/mistral/mistral/actions/openstack/cluster_migration
 $mistral workflow-create cold_migration/cluster-coldmigration.yaml
