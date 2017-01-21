@@ -1,7 +1,7 @@
 {
-  "cluster_id": "597fa3a5-2e83-4590-8301-8928a9d0cb90",
-  "node_id": "597fa3a5-2e83-4590-8301-8928a9d0cb90",
-  "host": "ubuntu2",
+  "cluster_id": "4ccc08d0-bcb7-48ff-bf06-cf7c163f4621",
+  "node_id": "31227086-d32f-4a6c-989a-0e5b255f4b5a",
+  "host": "p3-2",
   "block_migration": "False",
   "disk_over_commit": "False"
 }
