@@ -1,8 +1,11 @@
 import sys
 from mistral.actions.openstack.actions import NovaAction
 
-# check hypervisor free resource to allocate for a instance of the flavor type
+
 class CheckFlavorAction(NovaAction):
+    """Check if a hyoervisor has enough free resource to allocate
+       an instance of the flavor type.
+    """
 
     def __init__(self, migrate, hypervisor_hostname, flavor_id):
         self._flavor_id = flavor_id
@@ -23,7 +26,7 @@ class CheckFlavorAction(NovaAction):
 
             mem = limits_dict['memory_mb'] - flavor_dict['ram']
             disk = limits_dict['free_disk_gb'] - flavor_dict['disk']
-            vcpus = (limits_dict['vcpus']-limits_dict['vcpus_used']) - flavor_dict['vcpus']#vcpu could be over used?
+            vcpus = (limits_dict['vcpus']-limits_dict['vcpus_used']) - flavor_dict['vcpus']
 
             if ((mem<0) or (disk<0) or (vcpus<0)):
                 sys.exit("hypervisor resource shortage for allocating this flavor!")

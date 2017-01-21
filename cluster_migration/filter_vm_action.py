@@ -33,8 +33,22 @@ class FilterVmAction(NovaAction):
 
         if str(metadata.get('cluster')) == str(self._cluster_id):
             if str(self._uuid) == str(self._node_id):
-                #hypervisor_hostname = client.servers.find(id=self._uuid).to_dict()['OS-EXT-SRV-ATTR:hypervisor_hostname']
-                hypervisor_hostname = client.servers.find(id=self._uuid).to_dict()['OS-EXT-SRV-ATTR:host']
-                return Result(data={'migrate': True, 'uuid': self._uuid, 'hypervisor_hostname': hypervisor_hostname,'flavor_id': self._flavor})
+                #hypervisor_hostname = client.servers.find(
+                # id=self._uuid).to_dict()['OS-EXT-SRV-ATTR:hypervisor_hostname']
+                hypervisor_hostname = client.servers.find(
+                    id=self._uuid).to_dict()['OS-EXT-SRV-ATTR:host']
+                data = {
+                    'migrate': True,
+                    'uuid': self._uuid,
+                    'hypervisor_hostname': hypervisor_hostname,
+                    'flavor_id': self._flavor
+                }
+                return Result(data)
 
-        return Result(data={'migrate': False, 'uuid': self._uuid, 'hypervisor_hostname': '', 'flavor_id':self._flavor})
+        data = {
+            'migrate': False,
+            'uuid': self._uuid,
+            'hypervisor_hostname': '',
+            'flavor_id':self._flavor
+        }
+        return Result(data)
